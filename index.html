@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirCode</title>
+    <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <img id="logo" src="SkyfallenLogo.png">
+        <p id="title">AirCode</p>
+        <div class="main">
+            <div id="connection-info">
+                <p>Your IP is:</p>
+                <p id="ip-text"></p>
+                <div id="qrcode"></div>
+            </div>
+            <div id="lastcode-div" style="display: none;">
+                <p>Codes transmitted in this session:</p>
+                <p id="codecount"></p>
+            </div>
+            <div id="cstat-div">
+                <div class="loader" id="cstat-loader"></div>
+                <p id="connection-status">Waiting for connection...</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ipc = require('electron').ipcRenderer;
+        document.onreadystatechange = function () {
+            if (document.readyState == "interactive") {
+                ipc.send("ready","domloaded")
+            }
+        }
+        ipc.on('code', function (e,args){
+
+            document.getElementById("codecount").innerHTML = Number(document.getElementById("codecount").innerHTML)+1;
+
+        })
+        ipc.on('ip', function (e,args){
+
+            document.getElementById("ip-text").innerHTML = args;
+            new QRCode(document.getElementById("qrcode"), "||aircode||ip:"+args);
+
+        })
+        ipc.on('connected', function (e,args){
+
+            document.getElementById("connection-status").innerHTML = "Connected to: "+args;
+            document.getElementById("lastcode-div").style.display = "block";
+            document.getElementById("connection-info").style.display = "none";
+            document.getElementById("cstat-loader").style.display = "none";
+
+        })
+    </script>
+</body>
+</html>
