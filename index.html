@@ -5,57 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AirCode</title>
+    <script src="anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-    <div class="container">
+    <div id="preloader">
+        <div class="preloader-center">
+            <svg version="1.1" x="0px" y="0px"
+	 viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768; height: 100px;" xml:space="preserve">
+        <style type="text/css">
+            .st0{fill:#f5f5f5;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+        </style>
+        <path class="st0" d="M594.72,422.19c-10.17,81.38-20.34,162.76-30.55,244.43c-3.68,0-7.63,0.14-11.58-0.02
+            c-28.64-1.2-57.27-2.59-85.91-3.57c-4.48-0.15-6.69-1.74-8.81-5.47c-47.5-83.52-95.13-166.97-142.74-250.44
+            c-1.06-1.86-2.15-3.69-3.86-6.62c-33.47,91.14-69.88,180.05-101.6,271.13c-25.96-0.81-52.71-1.64-80.13-2.5
+            c0.65-2.16,1.09-3.85,1.67-5.49c41.64-118.17,83.33-236.33,124.9-354.52c4.25-12.08,7.92-24.37,11.65-36.62
+            c0.86-2.84,2.28-3.99,5.16-4.24c18.25-1.6,36.49-3.41,54.76-4.85c1.48-0.12,3.76,1.71,4.63,3.23c11.31,19.8,22.32,39.77,33.61,59.59
+            c39.06,68.6,78.19,137.15,117.29,205.72c0.82,1.43,1.71,2.82,3.3,5.41c0.86-6.98,1.62-12.75,2.27-18.54
+            c6.65-59.26,13.3-118.53,19.93-177.79c4.08-36.42,8.15-72.84,12.16-109.27c0.28-2.52,0.43-4.46,3.72-4.68
+            c31.9-2.15,63.8-4.4,95.9-6.64c45.44,97.91,90.81,195.66,136.73,294.6c5.21-15.45,9.98-29.55,14.72-43.66
+            C814.69,344.26,857.45,217.15,900.09,90c1.33-3.96,2.99-5.37,7.3-5.16c29.29,1.45,58.6,2.71,87.91,3.73
+            c4.23,0.15,5.33,2.72,6.56,5.55c8.22,18.72,16.32,37.49,24.52,56.22c79.22,180.81,158.45,361.61,237.67,542.41
+            c0.66,1.5,1.26,3.03,2.16,5.22c-2.14,0.14-3.86,0.39-5.57,0.36c-42.33-0.7-84.65-1.48-126.98-2.08c-3.33-0.05-4.53-1.54-5.7-4.24
+            c-50.28-116.06-100.63-232.1-150.97-348.13c-6.75-15.56-13.51-31.11-20.71-47.68c-0.99,2.53-1.67,4.13-2.24,5.77
+            c-41.09,119.06-82.19,238.12-123.17,357.23c-1.4,4.06-3.08,5.49-7.61,5.45c-40.83-0.35-81.67-0.45-122.5-0.38
+            c-4.34,0.01-6.31-1.26-7.97-5.34c-31.57-77.53-63.31-154.99-95.04-232.45c-0.61-1.48-1.35-2.91-2.03-4.36
+            C595.4,422.14,595.06,422.16,594.72,422.19z"/>
+        </svg>
+        </div>
+    </div>
+    <div class="container" id="mw">
         <img id="logo" src="SkyfallenLogo.png">
         <p id="title">AirCode</p>
         <div class="main">
-            <div id="connection-info">
-                <p>Your IP is:</p>
-                <p id="ip-text"></p>
-                <div id="qrcode"></div>
+            <div id="loading">
+                <div class="loader" id="loader-main"></div>
+                <p id="load-text">AirCode is loading</p>
             </div>
-            <div id="lastcode-div" style="display: none;">
-                <p>Codes transmitted in this session:</p>
-                <p id="codecount"></p>
-            </div>
-            <div id="cstat-div">
-                <div class="loader" id="cstat-loader"></div>
-                <p id="connection-status">Waiting for connection...</p>
+            <div id="content" style="display: none;">
+                <div id="connection-info">
+                    <p>Your IP is:</p>
+                    <p id="ip-text"></p>
+                    <div id="qrcode"></div>
+                </div>
+                <div id="lastcode-div" style="display: none;">
+                    <p>Codes transmitted in this session:</p>
+                    <p id="codecount">0</p>
+                </div>
+                <div id="cstat-div">
+                    <div class="loader" id="cstat-loader"></div>
+                    <p id="connection-status">Waiting for connection...</p>
+                </div>
             </div>
         </div>
     </div>
-    <script>
-        const ipc = require('electron').ipcRenderer;
-        document.onreadystatechange = function () {
-            if (document.readyState == "interactive") {
-                ipc.send("ready","domloaded")
-            }
-        }
-        ipc.on('code', function (e,args){
-
-            document.getElementById("codecount").innerHTML = Number(document.getElementById("codecount").innerHTML)+1;
-
-        })
-        ipc.on('ip', function (e,args){
-
-            document.getElementById("ip-text").innerHTML = args;
-            new QRCode(document.getElementById("qrcode"), "||aircode||ip:"+args);
-
-        })
-        ipc.on('connected', function (e,args){
-
-            document.getElementById("connection-status").innerHTML = "Connected to: "+args;
-            document.getElementById("lastcode-div").style.display = "block";
-            document.getElementById("connection-info").style.display = "none";
-            document.getElementById("cstat-loader").style.display = "none";
-
-        })
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
