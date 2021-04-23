@@ -1,3 +1,4 @@
+if(require('electron-squirrel-startup')) return;
 const { app, BrowserWindow, ipcMain, Menu, Tray } = require('electron')
 const path = require('path')
 const express = require('express')
