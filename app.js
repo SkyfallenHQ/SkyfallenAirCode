@@ -203,7 +203,7 @@ function createWindow () {
   win.on('close', function (evt) {
     evt.preventDefault();
     win.hide()
-    tray = new Tray(path.join(__dirname, "icons/png/icon.png")
+    tray = new Tray(path.join(__dirname, "icons/png/icon.png"))
     tray.on('right-click', toggleWindow)
     tray.on('double-click', toggleWindow)
     tray.on('click', function (event) {
