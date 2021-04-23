@@ -56,6 +56,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
+	          "icon": "./icons/win/icon.ico",
             "name": "AirCode"
           }
         },
