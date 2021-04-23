@@ -56,7 +56,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Skyfallen AirCode"
+            "name": "AirCode"
           }
         },
         {
